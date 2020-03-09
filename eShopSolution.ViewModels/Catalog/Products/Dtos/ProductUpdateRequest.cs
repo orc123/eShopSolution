@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShopSolution.ViewModels.Catalog.Products.Dtos.Manage
+namespace eShopSolution.ViewModels.Catalog.Products.Dtos
 {
     public class ProductUpdateRequest
     {

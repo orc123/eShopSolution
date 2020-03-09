@@ -3,7 +3,6 @@ using eShopSolution.Data.EF;
 using eShopSolution.Data.Entities;
 using eShopSolution.Utilities.Exceptions;
 using eShopSolution.ViewModels.Catalog.Products.Dtos;
-using eShopSolution.ViewModels.Catalog.Products.Dtos.Manage;
 using eShopSolution.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -118,7 +117,7 @@ namespace eShopSolution.Application.Catalog.Products
         }
 
 
-        public async Task<PagedResults<ProductViewModel>> GetAllPaging(ViewModels.Catalog.Products.Dtos.Manage.GetProductPagingRequest request)
+        public async Task<PagedResults<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
