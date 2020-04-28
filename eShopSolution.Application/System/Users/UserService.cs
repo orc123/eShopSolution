@@ -106,7 +106,9 @@ namespace eShopSolution.Application.System.Users
 
             var pagedResult = new PagedResults<UserVm>()
             {
-                TotalRecord = total,
+                TotalRecords = total,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
                 Items = data
             };
             return new ApiSuccessResult<PagedResults<UserVm>>(pagedResult);
