@@ -38,6 +38,12 @@
         </div>
 
         <div class="card-body">
+            @if(ViewBag.SuccessMessage != null)
+            {
+                <div id="msgAlert" class="alert alert-success" role="alert">
+                    @ViewBag.SuccessMessage
+                </div>
+            }
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -93,3 +99,12 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#msgAlert').fadeOut('slow');
+            }, 2000)
+        });
+    </script>
+}
