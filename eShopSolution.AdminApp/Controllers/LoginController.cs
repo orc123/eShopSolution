@@ -37,18 +37,24 @@ namespace eShopSolution.AdminApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(ModelState);
+                ModelState.AddModelError("", "Yêu cầu nhập Tài khoản và Mật Khẩu");
+                return View();
             }
 
-            var token = await _userApiClient.Authenticate(request);
+            var result = await _userApiClient.Authenticate(request);
+            if(result.ResultObject == null)
+            {
+                ModelState.AddModelError("", "Đăng nhập lỗi");
+                return View();
+            }
 
-            var userPrincipal = this.ValidateToken(token.ResultObject);
+            var userPrincipal = this.ValidateToken(result.ResultObject);
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 IsPersistent = false
             };
-            HttpContext.Session.SetString("Token", token.ResultObject);
+            HttpContext.Session.SetString("Token", result.ResultObject);
             await HttpContext.SignInAsync(
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         userPrincipal,

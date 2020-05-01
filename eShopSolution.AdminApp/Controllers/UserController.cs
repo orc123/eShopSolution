@@ -28,6 +28,7 @@ namespace eShopSolution.AdminApp.Controllers
                 PageSize = pageSize
             };
             var data = await _userApiClient.GetUserPaging(request);
+            ViewBag.Keyword = keyword;
             return View(data.ResultObject);
         }
 
