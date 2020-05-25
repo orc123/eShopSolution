@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using eShopSolution.AdminApp.Models;
 using Microsoft.AspNetCore.Authorization;
+using eShopSolution.Utilities.Constants;
+using Microsoft.AspNetCore.Http;
 
 namespace eShopSolution.AdminApp.Controllers
 {
@@ -34,6 +36,12 @@ namespace eShopSolution.AdminApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        [HttpPost]
+        public IActionResult Language(NavigationViewModel navigationViewModel) 
+        {
+            HttpContext.Session.SetString(SystemConstants.AppSettings.DefaultLanguageId, navigationViewModel.CurrentLanguageId);
+            return RedirectToAction("Index");
         }
     }
 }
