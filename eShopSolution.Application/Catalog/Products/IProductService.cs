@@ -21,9 +21,9 @@ namespace eShopSolution.Application.Catalog.Products
 
         Task<int> Delete(int productId);
 
-        Task<ProductViewModel> GetById(int productId, string languegeId);
+        Task<ProductVm> GetById(int productId, string languegeId);
 
-        Task<PagedResults<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
+        Task<ApiResult<PagedResults<ProductVm>>> GetAllPaging(GetManageProductPagingRequest request);
 
         Task<int> AddImage(int productId, ProductImageCreateRequest request);
 
@@ -35,6 +35,6 @@ namespace eShopSolution.Application.Catalog.Products
 
         Task<List<ProductImageViewModel>> GetListImages(int productId);
 
-        Task<PagedResults<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
+        Task<PagedResults<ProductVm>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
     }
 }
